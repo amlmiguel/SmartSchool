@@ -11,8 +11,8 @@ export class ProfessoresComponent implements OnInit {
 
   professores = [
      { id: 1, nome: 'Professor A', disciplina: 'Matemática' },
-     { id: 1, nome: 'Professor B', disciplina: 'Física' },
-     { id: 1, nome: 'Professor C', disciplina: 'Química' }
+     { id: 2, nome: 'Professor B', disciplina: 'Física' },
+     { id: 3, nome: 'Professor C', disciplina: 'Química' }
   ]
 
   constructor() { }
