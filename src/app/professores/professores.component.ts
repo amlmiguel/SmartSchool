@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Professor } from '../models/Professor';
 
 @Component({
@@ -9,6 +10,7 @@ import { Professor } from '../models/Professor';
 })
 export class ProfessoresComponent implements OnInit {
 
+  public modalRef: BsModalRef;
   public professorSelecionado: Professor;
   public professorForm: FormGroup;
   public titulo = 'Professores';
@@ -19,7 +21,8 @@ export class ProfessoresComponent implements OnInit {
      { id: 3, nome: 'Professor C', disciplina: 'Química' }
   ];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private modalService: BsModalService) {
     this.criarform();
    }
 
@@ -44,10 +47,16 @@ export class ProfessoresComponent implements OnInit {
     this.professorSelecionado = null;
   }
 
-  professorSubmit()
-  {
 
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
+
+professorSubmit()
+{
+
+}
+
 
 
 }

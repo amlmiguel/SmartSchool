@@ -48,15 +48,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let aluno of alunos" >
-          <td *ngIf="!alunoSelecionado"><button (click)="alunoSelect(aluno)" class="btn btn-sm btn-outline-primary">Detalhe</button></td>
+        <tr *ngFor="let aluno of alunos">
+          <td *ngIf="!alunoSelecionado"><button (click)="alunoSelect(aluno)"
+              class="text-dark btn btn-sm btn-outline-primary">Detalhe</button></td>
           <td scope="row">{{aluno.id}}</td>
           <td>{{aluno.nome}}</td>
           <td>{{aluno.sobrenome}}</td>
           <td>{{aluno.telefone}}</td>
           <td>
             <div class="btn-group">
-              <button class="btn btn-sm btn-outline-warning">Professores</button>
+              <button (click)="openModal(template)" class="btn btn-sm btn-outline-warning">Professores</button>
               <button class="btn btn-sm btn-outline-danger">Desativar</button>
             </div>
           </td>
@@ -65,3 +66,16 @@
     </table>
   </div>
 </div>
+
+<button type="button" class="btn btn-primary">Create template modal</button>
+
+<ng-template #template>
+  <div class="modal-body">
+    <app-professores></app-professores>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      FECHAR
+    </button>
+  </div>
+</ng-template>
