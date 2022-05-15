@@ -5,13 +5,13 @@ namespace SmartSchool_WebAPI.Models
         public Professor() { }
         public Professor(int id, string nome)
         {
-            this.id = id ;
-            this.nome = nome;
+            this.Id = id ;
+            this.Nome = nome;
 
         }
-        public int id { get; set; }
-        public string nome { get; set; }
-        public IEnumerable<Disciplina> disciplina { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public IEnumerable<Disciplina> Disciplinas { get; set; }
 
     }
 }

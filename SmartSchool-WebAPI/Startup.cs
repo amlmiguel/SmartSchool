@@ -22,7 +22,7 @@ namespace SmartSchool_WebAPI
             services.AddControllers();
             //         .AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling =
             //             Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            // services.AddScoped<IRepository, Repository>();
+            services.AddScoped<IRepository, Repository>();
             // services.AddCors();
         }
 
