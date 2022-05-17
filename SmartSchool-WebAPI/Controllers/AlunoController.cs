@@ -86,7 +86,7 @@ namespace SmartSchool_WebAPI.Controllers
     {
       try
       {
-        var aluno = await _repo.GetAlunoAsyncById(alunoId, false)
+        var aluno = await _repo.GetAlunoAsyncById(alunoId, false);
         if(aluno == null) return NotFound();
 
         _repo.Update(model);
