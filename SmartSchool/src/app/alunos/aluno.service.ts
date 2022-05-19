@@ -22,4 +22,20 @@ getById(id: number): Observable<Aluno> {
   return this.http.get<Aluno>(`${this.baseUrl}/${id}`);
 }
 
+// tslint:disable-next-line: typedef
+post(aluno: Aluno) {
+  return this.http.post(`${this.baseUrl}`, aluno);
+}
+
+// tslint:disable-next-line: typedef
+put(id: number, aluno: Aluno) {
+  return this.http.put(`${this.baseUrl}/${id}`, aluno);
+}
+
+// tslint:disable-next-line: typedef
+delete(id: number) {
+  return this.http.delete(`${this.baseUrl}/${id}`);
+}
+
+
 }

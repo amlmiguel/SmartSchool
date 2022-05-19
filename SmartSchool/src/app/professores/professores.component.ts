@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Professor } from '../models/Professor';
+import { ProfessoresService } from './professores.service';
 
 @Component({
   selector: 'app-professores',
@@ -15,18 +16,28 @@ export class ProfessoresComponent implements OnInit {
   public professorForm: FormGroup;
   public titulo = 'Professores';
 
-  professores = [
-     { id: 1, nome: 'Professor A', disciplina: 'Matemática' },
-     { id: 2, nome: 'Professor B', disciplina: 'Física' },
-     { id: 3, nome: 'Professor C', disciplina: 'Química' }
-  ];
+  public professores: Professor[];
 
   constructor(private fb: FormBuilder,
-              private modalService: BsModalService) {
+              private modalService: BsModalService,
+              private professorService: ProfessoresService) {
     this.criarform();
    }
 
   ngOnInit(): void {
+    this.carregarProfessores();
+  }
+
+  carregarProfessores() {
+    this.professorService.getAll().subscribe(
+      (professores: Professor[]) => {
+        this.professores = professores;
+      },
+      (error: any) => {
+        console.error(error);
+      }
+    );
+
   }
 
   criarform() {
@@ -54,7 +65,16 @@ export class ProfessoresComponent implements OnInit {
 
 professorSubmit()
 {
+  this.salvarProfessor(this.professorForm.value);
+}
 
+salvarProfessor(professor: Professor) {
+  this.professorService.put(professor.id, professor).subscribe(
+    (retorno: Professor) => {
+      this.carregarProfessores();
+    },
+    (error: any) => console.log(error)
+  );
 }
 
 

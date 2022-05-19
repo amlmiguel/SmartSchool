@@ -49,7 +49,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let aluno of alunos">
-          <td *ngIf="!alunoSelecionado"><button (click)="alunoSelect(aluno)"
+          <td><button (click)="alunoSelect(aluno)"
               class="text-dark btn btn-sm btn-outline-primary">Detalhe</button></td>
           <td scope="row">{{aluno.id}}</td>
           <td>{{aluno.nome}}</td>
@@ -66,8 +66,6 @@
     </table>
   </div>
 </div>
-
-<button type="button" class="btn btn-primary">Create template modal</button>
 
 <ng-template #template>
   <div class="modal-body">
