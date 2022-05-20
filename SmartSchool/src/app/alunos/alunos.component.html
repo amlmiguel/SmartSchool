@@ -47,7 +47,7 @@
           <th scope="col">Nome</th>
           <th scope="col">Sobrenome</th>
           <th scope="col">Telefone</th>
-          <th scope="col">Opções</th>
+          <th scope="col" style="padding-left: 60px;">Opções</th>
         </tr>
       </thead>
       <tbody>
@@ -60,7 +60,7 @@
           <td>{{aluno.telefone}}</td>
           <td>
             <div class="btn-group">
-              <button (click)="openModal(template)" class="btn btn-sm btn-outline-warning">Professores</button>
+              <button (click)="openModal(template)" class="btn btn-sm btn-outline-warning" style="margin-right: 10px;">Professores</button>
               <button class="btn btn-sm btn-outline-danger" (click)="deletarAluno(aluno.id)">Deletar</button>
             </div>
           </td>
