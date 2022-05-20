@@ -15,14 +15,15 @@ export class ProfessoresComponent implements OnInit {
   public professorSelecionado: Professor;
   public professorForm: FormGroup;
   public titulo = 'Professores';
+  public modo: string;
 
   public professores: Professor[];
 
   constructor(private fb: FormBuilder,
-              private modalService: BsModalService,
-              private professorService: ProfessoresService) {
+    private modalService: BsModalService,
+    private professorService: ProfessoresService) {
     this.criarform();
-   }
+  }
 
   ngOnInit(): void {
     this.carregarProfessores();
@@ -42,19 +43,18 @@ export class ProfessoresComponent implements OnInit {
 
   criarform() {
     this.professorForm = this.fb.group({
+      id: [''],
       nome: ['', Validators.required],
       disciplina: ['', Validators.required]
     });
   }
 
-  professorSelect(professor: Professor)
-  {
+  professorSelect(professor: Professor) {
     this.professorSelecionado = professor;
-    this.professorForm.patchValue(professor)
+    this.professorForm.patchValue(professor);
   }
 
-  voltar()
-  {
+  voltar() {
     this.professorSelecionado = null;
   }
 
@@ -63,13 +63,19 @@ export class ProfessoresComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-professorSubmit()
-{
-  this.salvarProfessor(this.professorForm.value);
+  professorSubmit() {
+    this.salvarProfessor(this.professorForm.value);
+  }
+
+professorNovo() {
+  this.professorSelecionado = new Professor();
+  this.professorForm.patchValue(this.professorSelecionado);
 }
 
 salvarProfessor(professor: Professor) {
-  this.professorService.put(professor.id, professor).subscribe(
+  (professor.id === 0) ? this.modo = 'post' : this.modo = 'put';
+  console.log(this.modo)
+  this.professorService[this.modo](professor).subscribe(
     (retorno: Professor) => {
       this.carregarProfessores();
     },

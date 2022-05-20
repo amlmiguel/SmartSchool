@@ -106,7 +106,7 @@ namespace SmartSchool_WebAPI.Controllers
 
      [HttpDelete("{alunoId}")]
 
-    public async Task<IActionResult> delete(int alunoId, Aluno model)
+    public async Task<IActionResult> delete(int alunoId)
     {
       try
       {
@@ -117,7 +117,7 @@ namespace SmartSchool_WebAPI.Controllers
 
         if(await _repo.SaveChangesAsync())
         {
-          return Ok("Deletado");
+          return Ok(new { message = "Deletado" });
         }
       }
       catch (Exception ex)

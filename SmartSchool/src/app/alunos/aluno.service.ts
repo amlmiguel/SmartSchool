@@ -28,8 +28,8 @@ post(aluno: Aluno) {
 }
 
 // tslint:disable-next-line: typedef
-put(id: number, aluno: Aluno) {
-  return this.http.put(`${this.baseUrl}/${id}`, aluno);
+put(aluno: Aluno) {
+  return this.http.put(`${this.baseUrl}/${aluno.id}`, aluno);
 }
 
 // tslint:disable-next-line: typedef

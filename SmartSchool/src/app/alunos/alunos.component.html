@@ -1,15 +1,16 @@
 <div class="row">
 
   <div class="col-sm-6" *ngIf="alunoSelecionado">
-
     <div class="row">
-      <div class="col mr-auto">
-        <app-titulo [titulo]="'Aluno: ' + alunoSelecionado.id"></app-titulo>
-      </div>
-      <div class="col mt-2">
-        <button class="btn btn-sm btn-outline-danger float-end" (click)="voltar()">Fechar</button>
-      </div>
+
+      <app-titulo [titulo]="alunoSelecionado.id == 0 ? 'Novo Aluno' : 'Aluno: ' + alunoSelecionado.id">
+      </app-titulo>
+
+      <button class="btn btn-sm btn-outline-danger float-end" (click)="voltar()">Fechar</button>
     </div>
+
+
+
 
     <form [formGroup]="alunoForm" (submit)="alunoSubmit()">
       <div class="form-group">
@@ -28,14 +29,16 @@
       </div>
 
       <div class="form-group mt-3">
-        <button class="btn btn-success" [disabled]="!alunoForm.valid">Enviar</button>
+        <button class="btn btn-success" [disabled]="!alunoForm.valid">Salvar</button>
       </div>
     </form>
 
   </div>
 
   <div [ngClass]="{'col-sm-12': !alunoSelecionado, 'col-sm-6': alunoSelecionado}">
-    <app-titulo [titulo]="titulo"></app-titulo>
+    <app-titulo [titulo]="titulo">
+      <button class="btn btn-success" (click)="alunoNovo()">Cadastrar Aluno</button>
+    </app-titulo>
     <table class="table table-hover">
       <thead class="thead-light">
         <tr>
@@ -49,8 +52,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let aluno of alunos">
-          <td><button (click)="alunoSelect(aluno)"
-              class="text-dark btn btn-sm btn-outline-primary">Detalhe</button></td>
+          <td><button (click)="alunoSelect(aluno)" class="text-dark btn btn-sm btn-outline-warning">Detalhe</button>
+          </td>
           <td scope="row">{{aluno.id}}</td>
           <td>{{aluno.nome}}</td>
           <td>{{aluno.sobrenome}}</td>
@@ -58,7 +61,7 @@
           <td>
             <div class="btn-group">
               <button (click)="openModal(template)" class="btn btn-sm btn-outline-warning">Professores</button>
-              <button class="btn btn-sm btn-outline-danger">Desativar</button>
+              <button class="btn btn-sm btn-outline-danger" (click)="deletarAluno(aluno.id)">Deletar</button>
             </div>
           </td>
         </tr>
